@@ -1,0 +1,23 @@
+cask_args appdir: "/Applications"
+
+cask "wezterm"
+cask "ghostty"
+
+brew "go"
+
+cask "obsidian"
+cask "visual-studio-code"
+cask "amethyst"
+
+brew "git"
+brew "ripgrep"
+brew "tree-sitter"
+brew "sheldon"
+brew "tfenv"
+brew "go-task"
+brew "tig"
+brew "gh"
+brew "asdf"
+
+cask "font-jetbrains-mono-nerd-font"
+cask "font-comic-shanns-mono-nerd-font"

@@ -1,0 +1,288 @@
+# Merged starship.toml
+
+# Start of ./starship-modules/format.toml
+
+format = """
+[](fg:#7aa2f7)\
+$os\
+[ ](fg:#7aa2f7 bg:#1a1b26)\
+$directory\
+[](fg:#1a1b26)\
+$fill\
+$git_branch\
+$git_status\
+$git_metrics\
+\n$character\
+"""
+
+right_format = """
+$cmd_duration
+$lua
+$rust
+$time
+"""
+# End of ./starship-modules/format.toml
+
+
+# Start of ./starship-modules/modules.toml
+
+[os]
+disabled = false
+format = "[$symbol]($style)"
+style = 'fg:#1a1b26 bg:#7aa2f7'
+
+[git_branch]
+symbol = ' ' # nf-fa-github_alt, nf-fa-code_fork
+# truncation_length = 4
+format = '[$symbol$branch(:$remote_branch)]($style)' # nf-pl-left_soft_divider
+style = 'fg:#7aa2f7 bg:#1a1b26' 
+truncation_symbol = '' 
+[git_status]
+ahead = '⇡${count}'
+behind = '⇣${count}'
+conflicted = '='
+deleted = '✘'
+diverged = '⇕'
+format = '([\[$all_status$ahead_behind\]]($style))'
+modified = '!${count}'
+renamed = '»'
+stashed = '$'
+style = 'fg:#e0af68 bg:#1a1b26'
+untracked = '?'
+up_to_date = '✓'
+# Second param
+[git_metrics]
+added_style = 'fg:#9ece6a bg:#1a1b26'
+deleted_style = 'fg:#9ece6a bg:#1a1b26'
+disabled = false
+format = '[+$added/-$deleted]($deleted_style)'
+
+[hostname]
+disabled = false
+format = "[$hostname]($style) in "
+ssh_only = false
+style = "bold dimmed blue"
+trim_at = "."
+
+# Third param
+[directory]
+format = '[$path]($style)[$read_only]($read_only_style)' 
+home_symbol = ' ~' # nf-costum-home
+read_only = ' 󰌾 ' # nf-md-lock
+read_only_style = 'fg:#f7768e bg:#1a1b26' 
+style = 'fg:#7aa2f7 bg:#1a1b26' 
+truncate_to_repo = true 
+truncation_length = 6 
+truncation_symbol = ' ' # nf-fa-folder_open
+
+[character]
+error_symbol = '[❯](bold red)'
+success_symbol = '[❯](bold #9ece6a)'
+
+## SECOND LINE/ROW: Prompt
+# Somethere at the beginning
+[battery]
+charging_symbol = " "
+disabled = true
+discharging_symbol = " "
+full_symbol = " "
+
+[[battery.display]] # "bold red" style when capacity is between 0% and 10%
+style = "bold red"
+threshold = 15
+
+[[battery.display]] # "bold yellow" style when capacity is between 10% and 30%
+style = "bold yellow"
+threshold = 50
+
+[[battery.display]] # "bold green" style when capacity is between 10% and 30%
+style = "bold green"
+threshold = 80
+
+# Prompt: optional param 1
+[time]
+format = " 🕙 $time($style)\n"
+style = "bright-white"
+time_format = "%T"
+
+# SYMBOLS
+[status]
+disabled = true
+format = '[\[$symbol$status_common_meaning$status_signal_name$status_maybe_int\]]($style)'
+map_symbol = true
+symbol = "🔴"
+
+# End of ./starship-modules/modules.toml
+
+
+# Start of ./starship-modules/nf-symbols.toml
+
+[aws]
+symbol = "  "
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+
+[cmake]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[crystal]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[fennel]
+symbol = " "
+
+[fossil_branch]
+symbol = " "
+
+[git_commit]
+tag_symbol = '  '
+
+[golang]
+symbol = " "
+
+[guix_shell]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[haxe]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[kotlin]
+symbol = " "
+
+[lua]
+symbol = " "
+
+[memory_usage]
+symbol = "󰍛 "
+
+[meson]
+symbol = "󰔷 "
+
+[nim]
+symbol = "󰆥 "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[ocaml]
+symbol = " "
+
+[os.symbols]
+AlmaLinux = " "
+Alpaquita = " "
+Alpine = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CachyOS = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Kali = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+Nobara = " "
+OpenBSD = "󰈺 "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+RedHatEnterprise = " "
+Redhat = " "
+Redox = "󰀘 "
+RockyLinux = " "
+SUSE = " "
+Solus = "󰠳 "
+Ubuntu = " "
+Unknown = " "
+Void = " "
+Windows = "󰍲 "
+openSUSE = " "
+
+[package]
+symbol = "󰏗 "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[pijul_channel]
+symbol = " "
+
+[python]
+symbol = " "
+
+[rlang]
+symbol = "󰟔 "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = "󱘗 "
+
+[scala]
+symbol = " "
+
+[swift]
+symbol = " "
+
+[zig]
+symbol = " "
+
+[gradle]
+symbol = " "
+
+# End of ./starship-modules/nf-symbols.toml
+

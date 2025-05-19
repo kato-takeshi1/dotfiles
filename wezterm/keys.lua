@@ -1,0 +1,33 @@
+local util = require 'util';
+local action = require 'action';
+
+return util.createKeyBinds {
+  {'a',     'LEADER|CTRL',  action.fn.SendString("\x01")    },
+  {'h',     'CMD',          action.ActivateLeftTab          },
+  {'l',     'CMD',          action.ActivateRightTab         },
+  {'f',     'CMD',          action.Search                   },
+  {'c',     'CMD',          action.CopyToClipboard          },
+  {'v',     'CMD',          action.PasteFromClipboard       },
+  {'n',     'CMD',          action.SpawnWindow              },
+  {'t',     'CMD',          action.SpawnDefaultDomainTab    },
+  {'T',     'CMD',          action.SpawnCurrendPaneDomainTab},
+  {'w',     'CMD',          action.CloseCurrentTab          },
+  {'q',     'CMD',          action.QuitApplication          },
+  {'r',     'CMD',          action.ReloadConfiguration      },
+  {'=',     'CMD',          action.IncreaseFontSize         },
+  {'-',     'CMD',          action.DecreaseFontSize         },
+  {'=',     'CTRL',         action.IncreaseOpacity          },
+  {'-',     'CTRL',         action.DecreaseOpacity          },
+  {'0',     'CMD',          action.fn.ActivateTab(-1)       },
+  {'1',     'CMD',          action.fn.ActivateTab(0)        },
+  {'2',     'CMD',          action.fn.ActivateTab(1)        },
+  {'3',     'CMD',          action.fn.ActivateTab(2)        },
+  {'4',     'CMD',          action.fn.ActivateTab(3)        },
+  {'5',     'CMD',          action.fn.ActivateTab(4)        },
+  {'6',     'CMD',          action.fn.ActivateTab(5)        },
+  {'7',     'CMD',          action.fn.ActivateTab(6)        },
+  {'8',     'CMD',          action.fn.ActivateTab(7)        },
+  {'9',     'CMD',          action.fn.ActivateTab(8)        },
+  {'Enter', 'ALT',          action.ToggleFullScreen         },
+  {'b',     'CTRL',         action.ToggleOpacity            },
+}
