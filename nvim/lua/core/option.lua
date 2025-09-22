@@ -44,7 +44,16 @@ opt.signcolumn = "yes"
 opt.whichwrap = "b,s,h,l"
 opt.scrolloff = 8
 
-opt.mouse = "a"
+-- Folding
+vim.o.foldcolumn = "3"
+vim.o.foldnestmax = 3
+vim.o.foldlevel = 2
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+vim.o.foldmethod = "manual"
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+
+vim.opt.mouse = "a"
 
 opt.swapfile = false
 -- set.directory = '~/.vim/swap'

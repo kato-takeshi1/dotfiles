@@ -1,0 +1,3 @@
+[submodule "vifm/colors"]
+	path = vifm/colors
+	url = git@github.com:vifm/vifm-colors.git

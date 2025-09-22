@@ -64,6 +64,8 @@ return {
           exclude = {
             "lua_ls",
             "rust_analyzer",
+            "kotlin_language_server",
+            "sourcekit",
           },
         },
         ensure_installed = {
@@ -106,6 +108,17 @@ return {
         },
       })
 
+      vim.lsp.config("kotlin_language_server", {
+        capabilities = capabilities,
+        settings = {
+          kotlin = {
+            completion = {
+              autoImport = true,
+            },
+          },
+        },
+      })
+
       vim.lsp.config("rust_analyzer", {
         capabilities = capabilities,
         settings = {
@@ -115,6 +128,24 @@ return {
             },
           },
         },
+      })
+
+      local swift_lsp = vim.api.nvim_create_augroup("swift_lsp", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "swift" },
+        callback = function()
+          local root_dir = vim.fs.dirname(vim.fs.find({
+            "Package.swift",
+            ".git",
+          }, { upward = true })[1])
+          local client = vim.lsp.start({
+            name = "sourcekit-lsp",
+            cmd = { "sourcekit-lsp" },
+            root_dir = root_dir,
+          })
+          vim.lsp.buf_attach_client(0, client)
+        end,
+        group = swift_lsp,
       })
     end,
   },
