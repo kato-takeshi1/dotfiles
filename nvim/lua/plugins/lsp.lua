@@ -130,6 +130,12 @@ return {
         },
       })
 
+      vim.lsp.config("copilot", {
+        cmd = { "copilot-language-server", "--stdio" },
+        root_markers = { ".git" },
+      })
+      vim.lsp.enable("copilot")
+
       local swift_lsp = vim.api.nvim_create_augroup("swift_lsp", { clear = true })
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "swift" },

@@ -5,9 +5,9 @@ return {
       useLspFoldsWithTreesitterFallback = true,
       autoFold = {
         enabled = true,
-        kinds = { "comment", "imports" }, ---@type lsp.FoldingRangeKind[]
+        kinds = { "comment", "imports", "function" }, ---@type lsp.FoldingRangeKind[]
       },
-      foldtextWithLineCount = {
+      foldtext = {
         enabled = true,
         template = "  󰘖 %s",
       },

@@ -175,6 +175,8 @@ return {
       { "<Leader>w", group = "Window", proxy = "<C-w>" },
 
       { "<Leader>h", group = "Help" },
+
+      { "<Leader>d", group = "Debug adapter" },
     })
   end,
 }
