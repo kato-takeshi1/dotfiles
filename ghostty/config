@@ -1,8 +1,12 @@
+macos-titlebar-style = tabs
+
 font-family = "ComicShannsMono Nerd Font Mono"
 font-size = 15
 
 background-opacity = 0.80
 background-blur = 10
+
+macos-option-as-alt = true
 
 keybind = command+h=previous_tab
 keybind = command+l=next_tab
