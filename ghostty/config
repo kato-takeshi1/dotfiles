@@ -1,0 +1,22 @@
+font-family = "ComicShannsMono Nerd Font Mono"
+font-size = 15
+
+background-opacity = 0.80
+background-blur = 10
+
+keybind = command+h=previous_tab
+keybind = command+l=next_tab
+keybind = command+r=reload_config
+
+keybind = command+w=close_surface
+
+keybind = ctrl+w>v=new_split:right
+keybind = ctrl+w>s=new_split:down
+
+keybind = ctrl+w>l=goto_split:right
+keybind = ctrl+w>h=goto_split:left
+keybind = ctrl+w>j=goto_split:down
+keybind = ctrl+w>k=goto_split:up
+
+keybind = ctrl+w>-=equalize_splits
+
