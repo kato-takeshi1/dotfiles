@@ -226,57 +226,6 @@ local Padding = {
 
 return {
   {
-    "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      require("lualine").setup({
-        options = {
-          icons_enabled = true,
-          theme = "auto",
-          component_separators = { left = "", right = "" },
-          section_separators = { left = "", right = "" },
-          disabled_filetypes = {
-            statusline = {},
-            winbar = {},
-          },
-          ignore_focus = {},
-          always_divide_middle = true,
-          always_show_tabline = true,
-          globalstatus = false,
-          refresh = {
-            statusline = 100,
-            tabline = 100,
-            winbar = 100,
-          },
-        },
-        sections = {
-          lualine_a = { "mode" },
-          lualine_b = { "branch", "diff", "diagnostics" },
-          lualine_c = { "filename" },
-          lualine_x = {
-            "encoding",
-            "filetype",
-            { "' ' .. vim.g.xcodebuild_last_status", color = { fg = "#a6e3a1" } },
-            -- { "'󰙨 ' .. vim.g.xcodebuild_test_plan", color = { fg = "#a6e3a1", bg = "#161622" } },
-            { xcodebuild_device, color = { fg = "#f9e2af", bg = "#161622" } },
-          },
-          lualine_y = { "progress" },
-          lualine_z = { "location" },
-        },
-        inactive_sections = {
-          lualine_a = {},
-          lualine_b = {},
-          lualine_c = { "filename" },
-          lualine_x = { "location" },
-          lualine_y = {},
-          lualine_z = {},
-        },
-        inactive_winbar = {},
-        extensions = {},
-      })
-    end,
-  },
-  {
     {
       "willothy/nvim-cokeline",
       dependencies = {
@@ -346,5 +295,49 @@ return {
         })
       end,
     },
+  },
+  {
+    "Bekaboo/dropbar.nvim",
+    -- optional, but required for fuzzy finder support
+    dependencies = {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+    },
+    config = function()
+      local dropbar = require("dropbar")
+      local dropbar_api = require("dropbar.api")
+      local sources = require("dropbar.sources")
+      local utils = require("dropbar.utils")
+
+      vim.ui.select = require("dropbar.utils.menu").select
+
+      vim.keymap.set("n", "<Leader>;", dropbar_api.pick, { desc = "Pick symbols in winbar" })
+      vim.keymap.set(
+        "n",
+        "[;",
+        dropbar_api.goto_context_start,
+        { desc = "Go to start of current context" }
+      )
+      vim.keymap.set("n", "];", dropbar_api.select_next_context, { desc = "Select next context" })
+
+      dropbar.setup({
+        menu = {
+          keymaps = {
+            ["l"] = function()
+              local menu = utils.menu.get_current()
+              if not menu then
+                return
+              end
+              local cursor = vim.api.nvim_win_get_cursor(menu.win)
+              local component = menu.entries[cursor[1]]:first_clickable(cursor[2])
+              if component then
+                menu:click_on(component, nil, 1, "l")
+              end
+            end,
+            ["h"] = "<C-w>q",
+          },
+        },
+      })
+    end,
   },
 }

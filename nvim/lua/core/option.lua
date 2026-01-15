@@ -40,6 +40,7 @@ opt.termguicolors = true
 opt.pumblend = 10
 opt.winblend = 15
 opt.signcolumn = "yes"
+opt.winborder = "rounded"
 
 opt.whichwrap = "b,s,h,l"
 opt.scrolloff = 8
@@ -54,6 +55,7 @@ vim.o.foldmethod = "manual"
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 vim.opt.mouse = "a"
+vim.opt.mousemoveevent = true
 
 opt.swapfile = false
 -- set.directory = '~/.vim/swap'

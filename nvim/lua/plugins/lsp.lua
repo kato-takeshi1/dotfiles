@@ -2,12 +2,26 @@ return {
   {
     "nvimdev/lspsaga.nvim",
     config = function()
-      require("lspsaga").setup({})
+      require("lspsaga").setup({
+        symbol_in_winbar = {
+          enable = false,
+        },
+      })
     end,
     dependencies = {
       "nvim-treesitter/nvim-treesitter", -- optional
       "nvim-tree/nvim-web-devicons", -- optional
     },
+  },
+  {
+    -- mouse hover
+    "soulis-1256/eagle.nvim",
+    config = function()
+      require("eagle").setup({
+        keyboard_mode = true,
+      })
+      vim.keymap.set("n", "<Tab>", ":EagleWin<CR>", { noremap = true, silent = true })
+    end,
   },
   {
     "folke/lazydev.nvim",
@@ -28,6 +42,7 @@ return {
       "mason-org/mason-lspconfig.nvim",
       "saghen/blink.cmp",
       "stevearc/conform.nvim",
+      "lspsaga.nvim",
     },
     config = function()
       -- Keymaps for lsp actions
@@ -37,23 +52,31 @@ return {
         callback = function(ev)
           local opts = { buffer = ev.buf }
 
-          vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+          vim.keymap.set("n", "K", function()
+            vim.lsp.buf.hover({
+              border = "single",
+              max_height = 25,
+              max_width = 120,
+            })
+          end, opts)
           vim.keymap.set("n", "gf", function()
             require("conform").format({ async = true })
           end, opts)
-          vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-          vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+          vim.keymap.set("n", "gr", "<CMD>Lspsaga finder ref+def<CR>", opts)
+          vim.keymap.set("n", "gd", "<CMD>Lspsaga finder def<CR>", opts)
           vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
           vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
           vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
           vim.keymap.set("n", "gn", vim.lsp.buf.rename, opts)
           vim.keymap.set("n", "ga", vim.lsp.buf.code_action, opts)
-          vim.keymap.set("n", "ge", vim.diagnostic.open_float, opts)
-          vim.keymap.set("n", "g]", function()
-            vim.diagnostic.jump({ count = 1 })
+          vim.keymap.set("n", "ge", "<CMD>Lspsaga show_line_diagnostics<CR>", opts)
+          vim.keymap.set("n", "[e", function()
+            -- vim.diagnostic.jump({ count = 1 })
+            require("lspsaga.diagnostic"):goto_prev()
           end, opts)
-          vim.keymap.set("n", "g[", function()
-            vim.diagnostic.jump({ count = -1 })
+          vim.keymap.set("n", "]e", function()
+            -- vim.diagnostic.jump({ count = -1 })
+            require("lspsaga.diagnostic"):goto_next()
           end, opts)
         end,
       })
@@ -173,6 +196,10 @@ return {
       })
     end,
   },
-
-  -- misc
+  {
+    "romus204/referencer.nvim",
+    config = function()
+      require("referencer").setup()
+    end,
+  },
 }
