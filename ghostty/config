@@ -24,3 +24,7 @@ keybind = ctrl+w>k=goto_split:up
 
 keybind = ctrl+w>-=equalize_splits
 
+quick-terminal-position = center
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
+
+quick-terminal-size = 90%,90%
