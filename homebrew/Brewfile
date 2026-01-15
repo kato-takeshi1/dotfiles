@@ -5,10 +5,24 @@ cask "ghostty"
 
 brew "go"
 
+# applications
+# cask "google-chrome"
 cask "obsidian"
 cask "visual-studio-code"
-cask "amethyst"
+cask "nikitabobko/tap/aerospace"
+cask "android-studio"
+cask "keycastr"
+cask "karabiner-elements"
+cask "zen"
 
+# launcher
+cask "raycast"
+
+# window management
+cask "amethyst"
+cask "alt-tab"
+
+# CLI tools
 brew "git"
 brew "ripgrep"
 brew "tree-sitter"
@@ -18,6 +32,30 @@ brew "go-task"
 brew "tig"
 brew "gh"
 brew "asdf"
+brew "vifm"
+brew "gradle"
+cask "android-commandlinetools"
+brew "imagemagick"
+brew "ffmpeg"
+brew "coreutils"
+brew "git-delta"
+brew "sinelaw/fresh/fresh-editor"
+brew "yazi"
+brew "sevenzip"
+brew "jq"
+brew "poppler"
+brew "fd"
+brew "fzf"
+brew "zoxide"
+brew "resvg"
+
+# for ios development
+brew "xcode-build-server"
+brew "xcbeautify"
+brew "ruby"
+brew "pipx"
+brew "rg"
+brew "coreutils"
 
 cask "font-jetbrains-mono-nerd-font"
 cask "font-comic-shanns-mono-nerd-font"
